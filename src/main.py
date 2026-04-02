@@ -1,7 +1,7 @@
 # En src/main.py
-import utils.validator_usersdata as validator_usersdata 
+import utils.validator_usersdata as vu 
 import sys
-import utils.password_generation as password_generation
+import utils.password_generation as pg
 
 
 usernames = [] # Stores registered usernames
@@ -11,7 +11,7 @@ def register_user(usernames, users_data):
     "This function will ask the user for his personal data"
 
     user_name = input("Enter your user name. ")
-    valid = validator_usersdata.username_validartor(user_name, usernames) # Validates the username
+    valid = vu.username_validartor(user_name, usernames) # Validates the username
 #calling the function created
     if valid == True:
         usernames.append(user_name) # Adds the user name to the list of usernames to validate 
@@ -28,17 +28,17 @@ def register_user(usernames, users_data):
                 new_password = input("Create a password, with \
 minimum 10 characters, presence of uppercase letters, lowercase \
 letters, numbers, and special characters)")
-                valid_password = validator_usersdata.validation_password(new_password) # Checks if the password is secure
+                valid_password = vu.validation_password(new_password) # Checks if the password is secure
                 if valid_password == True:
                     print("Valid password")
                     users_data[user_name]["Password"] = new_password # Stores the password
                     right_selection = True
                 else:
                     print("Invalid password")
-                    print("Suggested password: ", password_generation.generate_password(length=10)) # Suggests a secure password
+                    print("Suggested password: ", pg.generate_password(length=10)) # Suggests a secure password
 
             elif password_options == "y":
-                new_password = password_generation.generate_password(length= 10) # Generates a random password
+                new_password = pg.generate_password(length= 10) # Generates a random password
                 users_data[user_name]["Password"] = new_password # Stores the password
                 print("Your pasword is: ", new_password)
                 right_selection = True
@@ -53,7 +53,7 @@ while exit == False:
     if menu == 1:
         user_name = input("Enter your user name: ")
         password = input("Enter your password: ")
-        valid_login_data = validator_usersdata.validate_login(user_name, password, users_data) # Validates login credentials
+        valid_login_data = vu.validate_login(user_name, password, users_data) # Validates login credentials
         print("Login", valid_login_data)
     elif menu == 2:
         register_user(usernames, users_data) # Calls the registration function
