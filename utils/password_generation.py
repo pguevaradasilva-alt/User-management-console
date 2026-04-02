@@ -2,7 +2,7 @@
 import string
 import secrets
 
-def aleatory_password_g(length):
+def generate_password(length):
     "This function generates a aleatory password"
     #REQUIREMENTS:
     ## minimum length

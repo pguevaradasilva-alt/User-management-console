@@ -1,19 +1,20 @@
 
-import validator_usersdata 
+from utils import validator_usersdata 
 import sys
-from password_generation import aleatory_password_g as apg
+from utils import password_generation
 
-usersnames = [] # Stores registered usernames
+
+usernames = [] # Stores registered usernames
 users_data = {} # Stores all user information
 
-def ask_4_informations(usersnames, users_data):
+def register_user(usernames, users_data):
     "This function will ask the user for his personal data"
 
     user_name = input("Enter your user name. ")
-    valid = validator_usersdata.username_validartor(user_name, usersnames) # Validates the username
+    valid = validator_usersdata.username_validartor(user_name, usernames) # Validates the username
 #calling the function created
     if valid == True:
-        usersnames.append(user_name) # Adds the user name to the list of usernames to validate 
+        usernames.append(user_name) # Adds the user name to the list of usernames to validate 
         #new entered user names in the future
         users_data[user_name] = {} # Creates a record for the new user
         name = input("Enter your full name: ")
@@ -34,10 +35,10 @@ letters, numbers, and special characters)")
                     right_selection = True
                 else:
                     print("Invalid password")
-                    print("Suggested password: ", apg(length=10)) # Suggests a secure password
+                    print("Suggested password: ", password_generation.generate_password(length=10)) # Suggests a secure password
 
             elif password_options == "y":
-                new_password = apg(length= 10) # Generates a random password
+                new_password = password_generation.generate_password(length= 10) # Generates a random password
                 users_data[user_name]["Password"] = new_password # Stores the password
                 print("Your pasword is: ", new_password)
                 right_selection = True
@@ -55,7 +56,7 @@ while exit == False:
         valid_login_data = validator_usersdata.validate_login(user_name, password, users_data) # Validates login credentials
         print("Login", valid_login_data)
     elif menu == 2:
-        ask_4_informations(usersnames, users_data) # Calls the registration function
+        register_user(usernames, users_data) # Calls the registration function
     elif menu == 3:
         print(users_data) # Displays stored user data
     elif menu == 4:
