@@ -1,7 +1,7 @@
-
-from utils import validator_usersdata 
+# En src/main.py
+import utils.validator_usersdata as validator_usersdata 
 import sys
-from utils import password_generation
+import utils.password_generation as password_generation
 
 
 usernames = [] # Stores registered usernames
