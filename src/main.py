@@ -1,6 +1,23 @@
-# En src/main.py
-import utils.validator_usersdata as vu 
+#!/usr/bin/env python3
+"""
+User Management Console
+-----------------------
+This module handles the main flow for user registration and login.
+It coordinates data entry, security validations, and password generation.
+
+Usage:
+    python3 src/main.py
+"""
+
+__author__ = "Pablo Guevara"
+__version__ = "1.1.0"
+__maintainer__ = "Pablo Guevara"
+__status__ = "Development"
+
+# --- Imports ---
 import sys
+# Importing local modules from the utils package
+import utils.validator_usersdata as vu 
 import utils.password_generation as pg
 
 
